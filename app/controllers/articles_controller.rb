@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    
+
 
     if @article.update_attributes(article_params)
       redirect_to @article
