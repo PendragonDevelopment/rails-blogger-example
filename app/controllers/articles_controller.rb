@@ -2,14 +2,19 @@
 #
 # Table name: articles
 #
-#  id         :integer          not null, primary key
-#  title      :string
-#  body       :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                      :integer          not null, primary key
+#  title                   :string
+#  body                    :text
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  blog_image_file_name    :string
+#  blog_image_content_type :string
+#  blog_image_file_size    :integer
+#  blog_image_updated_at   :datetime
 #
 
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -63,7 +68,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :tag_list)
+    params.require(:article).permit(:title, :body, :blog_image, :tag_list)
   end
 
 end
